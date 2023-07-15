@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BookStore.Models.Domain.Book>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container pt-5">
+    <div class="row">
+        <a class="btn btn-dark" href="/Book/Add"> Add More</a>
+    </div>
+    <div class="row">
+        <h2>Genres </h2>
+        <table class="table table-striped table-bordered table-dark">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Isbn</th>
+                <th>Total Pages</th>
+                <th>AuthorName</th> 
+                <th>Publisher</th>
+                <th>Action</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.GenreName</td>
+                    <td>@item.Isbn</td>
+                    <td>@item.TotalPages.ToString()</td>
+                    <td>@item.AuthorName</td>
+                    <td>@item.PublisherName</td>
+                    <td>
+                        <a class="btn btn-success" href="/Book/Update?id=@item.Id">Edit</a>
+                        <a class="btn btn-danger" onclick="return  window.confirm('Are you sure?')" href="/Book/Delete?id=@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
